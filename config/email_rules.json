@@ -1,1 +1,11 @@
+{
+  "trusted_senders": [],
+  "priority_keywords": [
+    "internship",
+    "hackathon",
+    "assignment",
+    "deadline"
+  ],
+  "mode": "balanced"
+}
 
