@@ -1,13 +1,15 @@
 {
-  "trusted_senders": [],
+  "trusted_senders": [
+    "professor@college.edu",
+    "recruiter@company.com"
+  ],
   "priority_keywords": [
     "internship",
     "hackathon",
     "assignment",
-    "deadline"
+    "deadline",
+    "interview",
+    "submit"
   ],
   "mode": "balanced"
 }
-
-
-

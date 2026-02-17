@@ -1,0 +1,24 @@
+Sender: recruiter@company.com
+Subject: Internship Interview Schedule
+Reason: trusted_sender
+Summary: Internship Interview Schedule: Congratulations! Please choose an interview slot by 2026-02-20. Meeting details inside.
+Detected deadline: 2026-02-20
+---
+Sender: professor@college.edu
+Subject: Assignment 3 deadline reminder
+Reason: trusted_sender
+Summary: Assignment 3 deadline reminder: Submit Assignment 3 before Feb 20, 2026 via the portal.
+Detected deadline: Feb 20, 2026
+---
+Sender: hackathon@events.org
+Subject: Hackathon kickoff RSVP
+Reason: keyword:hackathon
+Summary: Hackathon kickoff RSVP: Please RSVP by 02/18/2026 to confirm your participation.
+Detected deadline: 02/18/2026
+---
+Sender: friend@example.com
+Subject: Weekend trip plans
+Reason: ai_spam_recovery
+Summary: Does not match common spam markers.
+Detected deadline: None
+---
