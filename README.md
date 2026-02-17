@@ -1,36 +1,40 @@
 # AI Productivity Email Intelligence System
 
-A config-driven, hybrid AI + rule-based productivity assistant that automates email triage, deadline extraction, downloads cleanup, and daily reporting.
+A minimal, config-driven MVP that processes mock emails and generates a daily productivity report.
 
-## What this project does
+## Overview
 
-- Classifies emails as spam/important using:
-  - deterministic rules (`trusted_senders`, `priority_keywords`)
-  - AI-style fallback classification for uncertain cases (local deterministic stub)
-- Generates summaries for important emails
-- Extracts date-like deadlines from important emails
-- Organizes files in a downloads folder into categories
-- Produces a daily productivity report and logs
+This project demonstrates a **rule-first email triage pipeline** with AI-ready extension points:
 
-## Architecture
+- Loads email rules from `config/email_rules.json`
+- Ingests mock emails from `data/mock_emails.json`
+- Classifies emails using deterministic rules:
+  - trusted sender match
+  - priority keyword match
+- Applies spam-folder handling (auto-delete vs recover)
+- Runs a deadline-detection stub (regex-based date matching)
+- Uses an AI summary placeholder for important messages
+- Writes `reports/Daily_Productivity_Report.txt`
+
+## Current MVP Architecture
 
 ```text
-Email Sources (mock/local)
+Mock Email Source (JSON)
   ↓
-Ingestion
+Config Loading
   ↓
-Rule Engine (trusted senders + keywords)
+Rule Engine (trusted_senders + priority_keywords)
   ↓
-AI Classification (uncertain/priority)
+Spam Handling + Important Mail Flagging
   ↓
-Deadline Extraction
+Deadline Detection Stub (regex patterns)
   ↓
-Downloads Cleanup
+Report Writer
   ↓
-Daily Report + Summary + Logs
+reports/Daily_Productivity_Report.txt
 ```
 
-## Project structure
+## Repository Structure
 
 ```text
 AI-Productivity-Assistant/
@@ -39,43 +43,58 @@ AI-Productivity-Assistant/
 ├── data/
 │   ├── mock_emails.json
 │   └── mock_downloads/
-├── docs/
-│   └── project_design.md
-├── logs/
 ├── pipeline/
 │   ├── __init__.py
 │   └── run.py
-└── reports/
+├── reports/
+│   ├── Daily_Productivity_Report.txt
+│   ├── Day-3-Report.md
+│   └── Day-3-Report-Template.md
+└── tests/
+    ├── conftest.py
+    └── test_run.py
 ```
 
 ## Configuration
 
 Edit `config/email_rules.json`:
 
-- `trusted_senders`: always considered important
-- `priority_keywords`: rule-based important markers
-- `mode`: strategy preset placeholder
+- `trusted_senders`: senders always treated as important
+- `priority_keywords`: keywords that mark emails as important
+- `mode`: reserved field for future behavior modes
 
-## Run
+## How to Run
+
+From the repository root:
 
 ```bash
 python pipeline/run.py
 ```
 
-Outputs:
+Expected output:
 
-- `reports/Daily_Productivity_Report.txt`
-- `logs/pipeline.log`
+- Console JSON summary with report path + metrics
+- Generated file: `reports/Daily_Productivity_Report.txt`
 
-## Current Status
+## Testing
 
-This repository includes an end-to-end MVP pipeline with mock data and deterministic AI stubs.
+Run unit tests with:
+
+```bash
+pytest -q
+```
+
+Test coverage includes:
+
+- config loading defaults
+- rule-based classification behavior
+- report file generation
 
 ## Next Steps After MVP
 
-- Integrate real email providers (Gmail API / IMAP) for live inbox and spam ingestion.
-- Replace placeholder AI summaries with LLM-based classification and 3-4 line summarization.
-- Add calendar integration for deadline-to-event creation and reminders.
-- Implement downloads cleanup automation with file-type routing and smart rename rules.
-- Add automated tests for config loading, rule engine logic, and deadline extraction.
-- Build a lightweight dashboard/UI for daily report review and action tracking.
+- Integrate real email providers (IMAP/Gmail API)
+- Replace summary placeholder with LLM-based summarization/classification
+- Improve deadline detection with date normalization and timezone handling
+- Add calendar-event creation and reminder stubs
+- Add downloads cleanup pipeline and routing rules
+- Expand tests for deadline extraction edge cases and end-to-end runs
