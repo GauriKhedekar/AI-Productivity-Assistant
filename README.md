@@ -64,16 +64,18 @@ python pipeline/run.py
 
 Outputs:
 
-- `reports/Daily_Productivity_Report_<YYYY-MM-DD>.md`
-- `reports/Important_Mail_Summary.txt`
+- `reports/Daily_Productivity_Report.txt`
 - `logs/pipeline.log`
 
-## Current status
+## Current Status
 
-This repository now includes an end-to-end MVP pipeline with mock data and deterministic AI stubs.
+This repository includes an end-to-end MVP pipeline with mock data and deterministic AI stubs.
 
-Planned next steps:
-- Real email provider integration (Gmail/IMAP)
-- LLM-backed summarization/classification
-- Calendar API integration
-- Rich UI dashboard
+## Next Steps After MVP
+
+- Integrate real email providers (Gmail API / IMAP) for live inbox and spam ingestion.
+- Replace placeholder AI summaries with LLM-based classification and 3-4 line summarization.
+- Add calendar integration for deadline-to-event creation and reminders.
+- Implement downloads cleanup automation with file-type routing and smart rename rules.
+- Add automated tests for config loading, rule engine logic, and deadline extraction.
+- Build a lightweight dashboard/UI for daily report review and action tracking.
