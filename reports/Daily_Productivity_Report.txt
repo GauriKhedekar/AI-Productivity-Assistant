@@ -1,0 +1,18 @@
+Date: 2026-02-17
+Inbox scanned: 4
+Spam reviewed: 2 (auto-deleted: 2, recovered: 0)
+Important flagged: 3
+Deadlines found: 3
+
+Important Email Summaries
+- Internship Interview Schedule | sender=recruiter@company.com | reason=trusted_sender
+  [AI-SUMMARY-PLACEHOLDER] Internship Interview Schedule: Congratulations! Please choose an interview slot by 2026-02-20. Meeting details inside.
+- Assignment 3 deadline reminder | sender=professor@college.edu | reason=trusted_sender
+  [AI-SUMMARY-PLACEHOLDER] Assignment 3 deadline reminder: Submit Assignment 3 before Feb 20, 2026 via the portal.
+- Hackathon kickoff RSVP | sender=hackathon@events.org | reason=keyword:hackathon
+  [AI-SUMMARY-PLACEHOLDER] Hackathon kickoff RSVP: Please RSVP by 02/18/2026 to confirm your participation.
+
+Detected Deadlines (stub)
+- Internship Interview Schedule: 2026-02-20
+- Assignment 3 deadline reminder: Feb 20, 2026
+- Hackathon kickoff RSVP: 02/18/2026

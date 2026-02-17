@@ -1,0 +1,38 @@
+[
+  {
+    "sender": "recruiter@company.com",
+    "subject": "Internship Interview Schedule",
+    "body": "Congratulations! Please choose an interview slot by 2026-02-20. Meeting details inside.",
+    "folder": "inbox"
+  },
+  {
+    "sender": "newsletter@randomads.biz",
+    "subject": "Win Free Bitcoin Today",
+    "body": "Click now to win lottery rewards and free bitcoin bonus.",
+    "folder": "spam"
+  },
+  {
+    "sender": "professor@college.edu",
+    "subject": "Assignment 3 deadline reminder",
+    "body": "Submit Assignment 3 before Feb 20, 2026 via the portal.",
+    "folder": "inbox"
+  },
+  {
+    "sender": "hackathon@events.org",
+    "subject": "Hackathon kickoff RSVP",
+    "body": "Please RSVP by 02/18/2026 to confirm your participation.",
+    "folder": "inbox"
+  },
+  {
+    "sender": "alerts@social.com",
+    "subject": "New login from unknown device",
+    "body": "If this wasn't you, reset your password.",
+    "folder": "inbox"
+  },
+  {
+    "sender": "friend@example.com",
+    "subject": "Weekend trip plans",
+    "body": "Let's plan a trip this weekend.",
+    "folder": "spam"
+  }
+]
