@@ -170,6 +170,20 @@ def run() -> dict[str, Any]:
     emails = load_mock_emails()
     result = process_emails(config, emails)
     report_path = write_report(result)
+    import os
+
+    summary_dir = ROOT / "Documents/AI_Email_Assistant"
+    os.makedirs(summary_dir, exist_ok=True)
+    summary_path = summary_dir / "Important_Mail_Summary.txt"
+
+    with summary_path.open("w", encoding="utf-8") as f:
+        for item in result["important_items"]:
+            email = item["email"]
+            summary = item.get("summary", "[AI-SUMMARY-PLACEHOLDER]")
+            f.write(f"{email.subject} | sender={email.sender} | reason={item['reason']}\n")
+            f.write(f"{summary}\n\n")
+
+    print(f"Important email summary written to {summary_path}")
     return {"report": str(report_path.relative_to(ROOT)), "metrics": result["metrics"]}
 
 
