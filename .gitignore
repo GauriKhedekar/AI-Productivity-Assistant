@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Email configuration / secrets
+email_credentials.json
+email_rules.json
+token.json
+credentials_google_calender.json
+
+# OS / IDE (optional but recommended)
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
