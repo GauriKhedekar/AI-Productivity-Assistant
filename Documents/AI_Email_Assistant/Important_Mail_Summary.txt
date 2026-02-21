@@ -1,9 +1,0 @@
-Internship Interview Schedule | sender=recruiter@company.com | reason=trusted_sender
-[AI-SUMMARY-PLACEHOLDER] Internship Interview Schedule: Congratulations! Please choose an interview slot by 2026-02-20. Meeting details inside.
-
-Assignment 3 deadline reminder | sender=professor@college.edu | reason=trusted_sender
-[AI-SUMMARY-PLACEHOLDER] Assignment 3 deadline reminder: Submit Assignment 3 before Feb 20, 2026 via the portal.
-
-Hackathon kickoff RSVP | sender=hackathon@events.org | reason=keyword:hackathon
-[AI-SUMMARY-PLACEHOLDER] Hackathon kickoff RSVP: Please RSVP by 02/18/2026 to confirm your participation.
-
