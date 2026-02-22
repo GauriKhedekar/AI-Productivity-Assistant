@@ -9,7 +9,7 @@ __pycache__/
 email_credentials.json
 email_rules.json
 token.json
-credentials_google_calender.json
+credentials.json
 
 # OS / IDE (optional but recommended)
 .DS_Store
