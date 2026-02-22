@@ -1,6 +1,5 @@
 import os
-import pickle
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from pathlib import Path
 from typing import Tuple
 
@@ -11,8 +10,8 @@ from googleapiclient.discovery import build
 
 ROOT = Path(__file__).resolve().parents[1]
 TOKEN_FILE = ROOT / "config/token.json"
-CREDENTIALS_FILE = ROOT / "config/credentials.json"
-SCOPES = ["https://www.googleapis.com/auth/calendar"]  # Full access to Calendar
+CREDENTIALS_FILE = ROOT / "config/credentials_google_calendar.json"  # corrected
+SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 class GoogleCalendarIntegration:
     def __init__(self):
@@ -28,7 +27,7 @@ class GoogleCalendarIntegration:
                 creds.refresh(Request())
             else:
                 if not CREDENTIALS_FILE.exists():
-                    return False, "credentials.json missing"
+                    return False, "credentials_google_calendar.json missing"
                 flow = InstalledAppFlow.from_client_secrets_file(str(CREDENTIALS_FILE), SCOPES)
                 creds = flow.run_local_server(port=0)
             with open(TOKEN_FILE, "w") as token:
@@ -48,20 +47,19 @@ class GoogleCalendarIntegration:
         if not self.service:
             return False, "", "Service not authenticated"
 
-        tomorrow = (datetime.utcnow() + timedelta(days=1)).date().isoformat()
+        tomorrow = (date.today() + timedelta(days=1)).isoformat()
         event = {
-        "summary": title,
-        "description": description,
-        "start": {"date": tomorrow},
-        "end": {"date": tomorrow},
-        "reminders": {"useDefault": True},
-         }
+            "summary": title,
+            "description": description,
+            "start": {"date": tomorrow},
+            "end": {"date": tomorrow},
+            "reminders": {"useDefault": True},
+        }
 
         try:
-             created_event = self.service.events().insert(calendarId="primary", body=event).execute()
-             event_id = created_event.get("id", "")
-             # Use the actual htmlLink from the API
-             event_link = created_event.get("htmlLink", "")
-             return True, event_id, event_link
+            created_event = self.service.events().insert(calendarId="primary", body=event).execute()
+            event_id = created_event.get("id", "")
+            event_link = created_event.get("htmlLink", "")
+            return True, event_id, event_link
         except Exception as e:
-              return False, "", f"Failed to create event: {str(e)}"
+            return False, "", f"Failed to create event: {str(e)}"
