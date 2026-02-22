@@ -58,7 +58,7 @@ ollama list  # verify model
 
 - Enable Calendar API in Google Cloud → Desktop OAuth → Add your Gmail under Test Users
 
-- Download JSON → rename to credential.json → place in config/
+- Download JSON → rename to credentials.json → place in config/
 
 - First run → approve consent → token.json auto-generated.
 
