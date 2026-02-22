@@ -1,67 +1,52 @@
----
-name: ai-productivity-assistant-dev
-description: Develop and maintain the AI-Productivity-Assistant project in D:\AI-Productivity-Assistant. Use for scoped, incremental Python changes (pipeline/run.py and related modules) plus updates to README.md, docs/, config/, reports/, and logs/.
-command: /apa-dev
+
 ---
 
-# AI-Productivity-Assistant Dev
+## **SKILL.md**
 
-Use this skill when working on the AI-Productivity-Assistant repository.
+```markdown
+# Skill - AI-Productivity-Assistant
 
-## Non-negotiables
+## Overview
+AI-Productivity-Assistant is a **productivity automation skill** designed to automate your daily email workflow, manage downloads, and create reminders using AI.
 
-- Workspace root is fixed: `D:\AI-Productivity-Assistant`.
-- Never read or write outside this root. If a target path is outside, stop.
-- Prefer small, precise edits over large abstract rewrites.
-- Before major modifications (new modules, multi-file refactors, dependency changes), confirm the workspace root:
-  - `Test-Path 'D:\AI-Productivity-Assistant'`
-  - `Test-Path 'D:\AI-Productivity-Assistant\.git'`
-  - `Test-Path 'D:\AI-Productivity-Assistant\README.md'`
+### Key Capabilities
+1. **Email Automation**
+   - Flags important emails based on **keywords** and **trusted senders**.
+   - Processes **Spam folder**:
+     - Prompts user for important emails
+     - Auto-recovers trusted emails
+     - Deletes irrelevant spam
+   - Generates **daily AI summary** of important emails using **Ollama AI**.
 
-## Iterative workflow (repeat until done)
+2. **Calendar Integration**
+   - Detects **dates in emails** flagged as important.
+   - Creates **Google Calendar reminders** one day before the event.
 
-1. **Design**
-   - Restate the goal and constraints.
-   - Identify exactly which files will change (start with `pipeline/run.py`).
-   - Define a *testable output* (CLI output, file produced, return code, log entry).
-2. **Minimal implementation**
-   - Implement the smallest change that produces the testable output.
-   - Keep diffs tight and localized.
-3. **Testable output**
-   - Run the narrowest validation first (targeted command/test).
-   - Capture results in `reports/` (human-readable) or `logs/` (runtime) when useful.
-4. **Incremental improvement**
-   - Refactor for clarity, reduce duplication, add error handling.
-   - Update `README.md` and `docs/` for any user-visible behavior.
+3. **Downloads Cleanup**
+   - Organizes files in `Downloads` folder into:
+     - `Important_College_Docs`
+     - `Certificates`
+   - Uses content analysis (OCR + PDF/DOCX/Text parsing) to classify files.
+   - Renames files based on content for clarity.
 
-## Primary maintenance areas
+4. **User-Friendly Setup**
+   - GUI-based prompts for entering important keywords and trusted senders.
+   - Stores configurations securely in `config/email_rules.json` and credentials in `config/email_credentials.json`.
 
-- **Python code**: `pipeline/run.py` (primary entry point) and future modules.
-- **Documentation**: `README.md`, `docs/`.
-- **Configuration**: `config/`.
-- **Outputs**: `reports/` (summaries), `logs/` (runtime traces).
+### Technology Stack
+- Python 3.10+
+- Libraries: `imaplib`, `email`, `tkinter`, `requests`, `pytesseract`, `pdfplumber`, `docx`
+- Google Calendar API
+- Ollama local AI server (`phi3` model)
 
-## Editing guidelines
+### Inputs
+- Gmail account + App Password
+- Google Calendar credentials
+- Important keywords (emails)
+- Trusted sender emails
 
-- Keep functions explicit with clear inputs/outputs.
-- When refactoring, preserve behavior unless the user explicitly asks to change it.
-- Prefer small helper functions over deep class hierarchies.
-- When adding new modules, wire them into `pipeline/run.py` with minimal coupling.
-
-## Safety checks before writing
-
-- Resolve full paths and ensure they begin with `D:\AI-Productivity-Assistant\`.
-- Use `git status` to confirm the change set matches intent.
-- If scope is uncertain or the diff is growing, pause and ask the user.
-
-## Common PowerShell commands
-
-- `Set-Location 'D:\AI-Productivity-Assistant'`
-- `git status`
-- `git diff`
-
-## Stop and ask the user when
-
-- Requirements are ambiguous or there are multiple valid designs.
-- Any operation would touch files outside the fixed workspace root.
-- A step requires network installs or other side effects not requested.
+### Outputs
+- Daily report: `reports/Daily_Productivity_Report.txt`
+- Organized Downloads folders
+- Google Calendar reminders
+- AI-generated summary of important emails
