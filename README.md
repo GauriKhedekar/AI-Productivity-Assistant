@@ -5,13 +5,98 @@
 
 ---
 
-## (IMPORTANT NOTE) :-For Installation Steps and Project Setup refer to "GUIDE.md" file present in this Repository only.
+## (IMPORTANT NOTE) :-For detailed Installation Steps and Project Setup refer to "GUIDE.md" file present in this Repository only.
 
+---
+
+
+## 📝 Quick Guide for Running AI-Productivity-Assistant
+
+### 1️⃣ **Clone Repository**
+
+
+```bash
+git clone https://github.com/<your-username>/AI-Productivity-Assistant.git
+cd AI-Productivity-Assistant
+```
+
+
+### 2️⃣ Setup Python Environment
+
+
+```
+python -m venv venv
+venv\Scripts\activate.bat   # Windows
+pip install -r requirements.txt
+```
+
+
+### 3️⃣ Ollama AI
+
+
+- Install Ollama CLI / Local Server: http://localhost:11434
+
+- Pull phi3 model:
+
+
+```
+ollama pull phi3
+ollama list  # verify model
+```
+
+
+### 4️⃣ Gmail App Password
+
+
+- Create in Google Account → Security → App Passwords → Mail → Desktop
+
+- Note the 16-digit password for first run authentication.
+
+
+### 5️⃣ Google Calendar API
+
+
+- Enable Calendar API in Google Cloud → Desktop OAuth → Add your Gmail under Test Users
+
+- Download JSON → rename to credentials_google_calendar.json → place in config/
+
+- First run → approve consent → token.json auto-generated.
+
+### 6️⃣ Run Project
+
+
+```
+python -m pipeline.run
+```
+
+
+- Enter important keywords and trusted senders when prompted.
+
+- Processes Inbox & Spam, creates calendar events, organizes Downloads, and generates daily report.
+
+### 7️⃣ View Daily Report
+
+
+```
+cat reports/Daily_Productivity_Report.txt
+```
+
+
+### ⚠ Notes
+
+
+- Run once a day to avoid duplicate calendar events.
+
+- Do not leave empty JSON files in config/.
+
+- Trusted senders are automatically saved for future email recovery.
 
 ## 🚀 Features
 
 
 ### 1️⃣ Email Automation
+
+
 - Scans your **Inbox** and **Spam folder** to detect important emails.
 - Flags emails as important based on:
   - **User-defined keywords**.
@@ -23,12 +108,16 @@
 
 
 ### 2️⃣ Calendar Integration
+
+
 - Detects **dates in important emails**.
 - Automatically creates **Google Calendar reminders** one day before the detected date.
 - Helps you never miss deadlines or important events.
 
 
 ### 3️⃣ Downloads Folder Cleanup
+
+
 - Organizes files in your **Downloads** folder into:
   - `Important_College_Docs`
   - `Certificates`
@@ -37,6 +126,8 @@
 
 
 ### 4️⃣ User-Friendly Setup
+
+
 - GUI-based prompts (fallback to console if GUI is unavailable):
   - Enter **important keywords** one by one.
   - Enter **trusted sender emails**.
@@ -86,6 +177,7 @@ AI-Productivity-Assistant/
 
 ## 🧠 Technology Stack
 
+
 - Python 3.10+
 
 - Libraries: imaplib, email, tkinter, requests, pytesseract, pdfplumber, docx
@@ -95,6 +187,7 @@ AI-Productivity-Assistant/
 - Ollama Local AI (phi3 model)
 
 ## 📈 Outputs
+
 
 - Daily Productivity Report → reports/Daily_Productivity_Report.txt
 
