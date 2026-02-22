@@ -1,100 +1,111 @@
-# AI Productivity Email Intelligence System
+# AI-Productivity-Assistant
 
-A minimal, config-driven MVP that processes mock emails and generates a daily productivity report.
 
-## Overview
+**AI-Productivity-Assistant** is a comprehensive productivity automation tool designed to streamline your email workflow, manage your downloads, and create calendar reminders using AI. It integrates Gmail, Google Calendar, and local AI (Ollama) to make your day-to-day tasks seamless and automated.
 
-This project demonstrates a **rule-first email triage pipeline** with AI-ready extension points:
+---
 
-- Loads email rules from `config/email_rules.json`
-- Ingests mock emails from `data/mock_emails.json`
-- Classifies emails using deterministic rules:
-  - trusted sender match
-  - priority keyword match
-- Applies spam-folder handling (auto-delete vs recover)
-- Runs a deadline-detection stub (regex-based date matching)
-- Uses an AI summary placeholder for important messages
-- Writes `reports/Daily_Productivity_Report.txt`
+## (IMPORTANT NOTE) :-For Installation Steps and Project Setup refer to "GUIDE.md" file present in this Repository only.
 
-## Current MVP Architecture
 
-```text
-Mock Email Source (JSON)
-  ↓
-Config Loading
-  ↓
-Rule Engine (trusted_senders + priority_keywords)
-  ↓
-Spam Handling + Important Mail Flagging
-  ↓
-Deadline Detection Stub (regex patterns)
-  ↓
-Report Writer
-  ↓
-reports/Daily_Productivity_Report.txt
+## 🚀 Features
+
+
+### 1️⃣ Email Automation
+- Scans your **Inbox** and **Spam folder** to detect important emails.
+- Flags emails as important based on:
+  - **User-defined keywords**.
+  - **Trusted senders**.
+- **Trusted senders auto-recovery**:  
+  Once a sender is added to `trusted_senders` in `email_rules.json`, all future emails from that sender found in the Spam folder are **automatically moved to Inbox** without asking again.
+- Rule-based alerts for emails in Spam that match important keywords.
+- Generates **daily AI-generated summaries** of important emails using **Ollama AI (phi3 model)**.
+
+
+### 2️⃣ Calendar Integration
+- Detects **dates in important emails**.
+- Automatically creates **Google Calendar reminders** one day before the detected date.
+- Helps you never miss deadlines or important events.
+
+
+### 3️⃣ Downloads Folder Cleanup
+- Organizes files in your **Downloads** folder into:
+  - `Important_College_Docs`
+  - `Certificates`
+- Uses content analysis (OCR for images, PDF parsing, DOCX, and TXT parsing) to classify files intelligently.
+- Renames files based on content for clarity and avoids duplicates.
+
+
+### 4️⃣ User-Friendly Setup
+- GUI-based prompts (fallback to console if GUI is unavailable):
+  - Enter **important keywords** one by one.
+  - Enter **trusted sender emails**.
+- Stores configurations securely in `config/email_rules.json`.
+- Gmail credentials stored in `config/email_credentials.json`.
+- Google Calendar OAuth token stored in `config/token.json`.
+
+---
+
+
+## 📂 Project Structure
+
+
 ```
-
-## Repository Structure
-
-```text
 AI-Productivity-Assistant/
 ├── config/
-│   └── email_rules.json
-├── data/
-│   ├── mock_emails.json
-│   └── mock_downloads/
+│   ├── email_credentials.json
+│   ├── email_rules.json
+│   ├── credentials_google_calendar.json
+│   └── token.json
+├── docs/
+│   └── project_design.md
+├── reports/
+│   └── Daily_Productivity_Report.txt
 ├── pipeline/
 │   ├── __init__.py
-│   └── run.py
-├── reports/
-│   ├── Daily_Productivity_Report.txt
-│   ├── Day-3-Report.md
-│   └── Day-3-Report-Template.md
-└── tests/
-    ├── conftest.py
-    └── test_run.py
+│   ├── spam_processor.py
+│   ├── learning_manager.py
+│   ├── alert_manager.py
+│   ├── email_utils.py
+│   ├── calendar_integration.py
+│   ├── downloads_cleanup.py
+│   ├── ai_summary.py
+│   ├── run.py
+│   └── user_setup.py
+├── skills/
+│   └── si-productivity-assistant-dev
+│       └── SKILL.md
+├── test/
+│   ├── conftest.py
+│   └── test_run.py
+├── README.md
+├── GUIDE.md
+└── .gitignore
 ```
 
-## Configuration
 
-Edit `config/email_rules.json`:
+## 🧠 Technology Stack
 
-- `trusted_senders`: senders always treated as important
-- `priority_keywords`: keywords that mark emails as important
-- `mode`: reserved field for future behavior modes
+- Python 3.10+
 
-## How to Run
+- Libraries: imaplib, email, tkinter, requests, pytesseract, pdfplumber, docx
 
-From the repository root:
+- Google Calendar API (OAuth 2.0)
 
-```bash
-python pipeline/run.py
-```
+- Ollama Local AI (phi3 model)
 
-Expected output:
+## 📈 Outputs
 
-- Console JSON summary with report path + metrics
-- Generated file: `reports/Daily_Productivity_Report.txt`
+- Daily Productivity Report → reports/Daily_Productivity_Report.txt
 
-## Testing
+- Organized Downloads folders: Important_College_Docs, Certificates
 
-Run unit tests with:
+- Google Calendar reminders for important email dates
 
-```bash
-pytest -q
-```
+- AI-generated email summary of important emails
 
-Test coverage includes:
+- Trusted senders auto-recovery: Emails from trusted senders in Spam are automatically moved to Inbox without alerts.
+ 
 
-- config loading defaults
-- rule-based classification behavior
-- report file generation
+---
 
-## Next Steps After MVP
-
-- Integrate real email providers (IMAP/Gmail API)
-- Replace summary placeholder with LLM-based summarization/classification
-- Improve deadline detection with date normalization and timezone handling
-- Add calendar-event creation and reminder stubs
-- Add downloads cleanup pipeline and routing rules
-- Expand tests for deadline extraction edge cases and end-to-end runs
