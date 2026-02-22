@@ -1,0 +1,40 @@
+# -----------------------------
+# Core HTTP / API
+# -----------------------------
+requests                 # For making HTTP requests to Ollama API
+
+# -----------------------------
+# Google Calendar Integration
+# -----------------------------
+google-api-python-client  # Google Calendar API client
+google-auth               # Google Auth core library
+google-auth-oauthlib      # OAuth flow for Google APIs
+google-auth-httplib2      # HTTP transport for Google APIs
+
+# -----------------------------
+# File / Document Handling
+# -----------------------------
+Pillow                    # For image processing (OCR)
+pytesseract               # OCR for extracting text from images
+pdfplumber                # Extract text from PDF files
+python-docx               # Read .docx documents
+lxml                       # Parsing XML / HTML if needed
+
+# -----------------------------
+# Typing / Compatibility
+# -----------------------------
+typing-extensions         # Type hints compatibility for older Python versions
+
+# -----------------------------
+# GUI
+# -----------------------------
+tk                        # For Tkinter GUI dialogs (comes with Python on most OS)
+
+# -----------------------------
+# NOTES: Ollama Model
+# -----------------------------
+# Ollama is NOT a Python package.
+# Install separately: https://ollama.com
+# Pull the phi3 model via CLI:
+# ollama pull phi3
+# Ensure Ollama server is running at http://localhost:11434 before using ai_summary.py
