@@ -80,7 +80,7 @@ You should see the phi3 model listed.
 Create a new project. -> Enable Google Calendar API. -> Create OAuth 2.0 Client ID credentials → Application Type: Desktop app. -> Add your Gmail account under Test Users in OAuth consent screen.
 ```
 
-2. Download the JSON credentials → rename to credentials_google_calendar.json.
+2. Download the JSON credentials → rename to credentials.json.
 
 3. Place it in config/ folder of the project.
 
