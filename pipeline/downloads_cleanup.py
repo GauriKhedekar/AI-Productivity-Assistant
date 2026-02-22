@@ -11,7 +11,7 @@ import docx
 # -----------------------------
 COLLEGE_DOC_KEYWORDS = {
     "Certificates": ["certificate", "degree", "marksheet", "transcript", "award", "completion"],
-    "Important_College_Docs": ["attendance", "affidavit", "domicile", "admission", "offer", "form", "fee", "receipt", "registration", "important doc", "bank", "account", "scholarship", "Loan", "result"]
+    "Important_College_Docs": ["card", "attendance", "affidavit", "domicile", "admission", "offer", "form", "fee", "receipt", "registration", "important doc", "bank", "account", "scholarship", "Loan", "result"]
 }
 
 # -----------------------------
