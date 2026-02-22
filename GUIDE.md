@@ -74,7 +74,7 @@ You should see the phi3 model listed.
 ## 5️⃣ Google Calendar API Setup
 
 
-1. Go to Google Cloud Console
+1. Go to Google Cloud Console:- 'https://console.cloud.google.com/apis/credentials'
    
 ```
 Create a new project. -> Enable Google Calendar API. -> Create OAuth 2.0 Client ID credentials → Application Type: Desktop app. -> Add your Gmail account under Test Users in OAuth consent screen.
