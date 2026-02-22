@@ -10,8 +10,8 @@ import docx
 # KEYWORDS FOR COLLEGE DOCS
 # -----------------------------
 COLLEGE_DOC_KEYWORDS = {
-    "Certificates": ["certificate", "degree", "marksheet", "transcript", "award", "completion"],
-    "Important_College_Docs": ["card", "attendance", "affidavit", "domicile", "admission", "offer", "form", "fee", "receipt", "registration", "important doc", "bank", "account", "scholarship", "Loan", "result"]
+    "Certificates": ["certificate", "degree", "transcript", "award", "completion"],
+    "Important_College_Docs": ["marksheet", "grade", "documents", "card", "hall ticket" , "attendance", "affidavit", "domicile", "admission", "offer", "form", "fee", "receipt", "registration", "important doc", "bank", "account", "scholarship", "Loan", "result"]
 }
 
 # -----------------------------
