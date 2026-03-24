@@ -113,6 +113,7 @@ cat reports/Daily_Productivity_Report.txt
 - Detects **dates in important emails**.
 - Automatically creates **Google Calendar reminders** one day before the detected date.
 - Helps you never miss deadlines or important events.
+##### Note:- This needs to be updated as events are not getting created on correct date. If you can fix it feel free to open a PR
 
 
 ### 3️⃣ Downloads Folder Cleanup
