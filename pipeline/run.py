@@ -129,7 +129,7 @@ def run() -> dict[str, Any]:
             title="Action Required", 
             description=email_obj.subject, 
             event_date=email_obj.date # Ensure your Email object has a .date attribute in YYYY-MM-DD
-)
+            )
             if success:
                 calendar_metrics['events_created'] += 1
                 print(f"✓ Calendar event created: {title}")
