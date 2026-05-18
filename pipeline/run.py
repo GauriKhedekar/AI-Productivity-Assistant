@@ -124,8 +124,12 @@ def run() -> dict[str, Any]:
             title = (email_obj.subject or email_obj.body or "Email Event")[:70]
             description = title
         
-            success, event_id, event_link_or_msg = calendar_client.create_event(title=title, description=description)
-
+            # Inside the loop in run.py
+            success, event_id, event_link_or_msg = calendar_client.create_event(
+            title="Action Required", 
+            description=email_obj.subject, 
+            event_date=email_obj.date # Ensure your Email object has a .date attribute in YYYY-MM-DD
+)
             if success:
                 calendar_metrics['events_created'] += 1
                 print(f"✓ Calendar event created: {title}")
