@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 
 ROOT = Path(__file__).resolve().parents[1]
 TOKEN_FILE = ROOT / "config/token.json"
-CREDENTIALS_FILE = ROOT / "config/credentials_google_calendar.json"  # corrected
+CREDENTIALS_FILE = ROOT / "config/credentials.json"  # corrected
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 class GoogleCalendarIntegration:
