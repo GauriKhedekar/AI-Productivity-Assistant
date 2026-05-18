@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timedelta, date
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, Optional
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 
 ROOT = Path(__file__).resolve().parents[1]
 TOKEN_FILE = ROOT / "config/token.json"
-CREDENTIALS_FILE = ROOT / "config/credentials.json"  # corrected
+CREDENTIALS_FILE = ROOT / "config/credentials.json"
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 class GoogleCalendarIntegration:
@@ -39,27 +39,37 @@ class GoogleCalendarIntegration:
         except Exception as e:
             return False, f"Error building service: {str(e)}"
 
-    def create_event(self, title: str, description: str) -> Tuple[bool, str, str]:
+    def create_event(self, title: str, description: str, event_date: Optional[str] = None) -> Tuple[bool, str, str]:
         """
-        Creates an all-day calendar event for tomorrow.
-        Returns (success, event_id, html_link or error message)
+        Creates an all-day calendar event.
+        - If event_date is provided (YYYY-MM-DD), it creates it for one day BEFORE that date.
+        - If no date is provided, it defaults to tomorrow.
         """
         if not self.service:
             return False, "", "Service not authenticated"
 
-        tomorrow = (date.today() + timedelta(days=1)).isoformat()
-        event = {
-            "summary": title,
-            "description": description,
-            "start": {"date": tomorrow},
-            "end": {"date": tomorrow},
-            "reminders": {"useDefault": True},
-        }
-
         try:
+            if event_date:
+                # Convert the email date string to a date object
+                base_dt = date.fromisoformat(event_date)
+                # Calculate one day before the detected date
+                target_date = (base_dt - timedelta(days=1)).isoformat()
+            else:
+                # Fallback to tomorrow if no date was parsed from email
+                target_date = (date.today() + timedelta(days=1)).isoformat()
+
+            event = {
+                "summary": title,
+                "description": f"Source Email Subject: {description}",
+                "start": {"date": target_date},
+                "end": {"date": target_date},
+                "reminders": {"useDefault": True},
+            }
+
             created_event = self.service.events().insert(calendarId="primary", body=event).execute()
-            event_id = created_event.get("id", "")
-            event_link = created_event.get("htmlLink", "")
-            return True, event_id, event_link
+            return True, created_event.get("id", ""), created_event.get("htmlLink", "")
+            
+        except ValueError:
+            return False, "", "Invalid date format provided. Expected YYYY-MM-DD."
         except Exception as e:
             return False, "", f"Failed to create event: {str(e)}"
